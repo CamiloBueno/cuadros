@@ -9,8 +9,8 @@ export function shuffleArray<T>(items: T[]): T[] {
   return result;
 }
 
-export function buildDeck(pairs: MemoryPair[]): MemoryCardData[] {
-  const cards: MemoryCardData[] = pairs.flatMap((pair) => [
+export function buildOrderedDeck(pairs: MemoryPair[]): MemoryCardData[] {
+  return pairs.flatMap((pair) => [
     {
       id: `${pair.id}-image`,
       pairId: pair.id,
@@ -28,5 +28,8 @@ export function buildDeck(pairs: MemoryPair[]): MemoryCardData[] {
       isMatched: false,
     },
   ]);
-  return shuffleArray(cards);
+}
+
+export function buildDeck(pairs: MemoryPair[]): MemoryCardData[] {
+  return shuffleArray(buildOrderedDeck(pairs));
 }

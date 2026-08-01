@@ -4,7 +4,7 @@ import { useEffect, useReducer, useRef, useState } from 'react';
 import { MemoryCard } from './MemoryCard';
 import { Timer } from './Timer';
 import { ResultModal } from './ResultModal';
-import { buildDeck } from '@/lib/game/shuffle';
+import { buildDeck, buildOrderedDeck } from '@/lib/game/shuffle';
 import { createInitialState, gameReducer, TIME_LIMIT_SECONDS } from '@/lib/game/reducer';
 import type { MemoryPair } from '@/lib/game/types';
 
@@ -18,10 +18,15 @@ export function MemoryGame({ pairs }: MemoryGameProps) {
   const [state, dispatch] = useReducer(
     gameReducer,
     pairs,
-    (initialPairs) => createInitialState(buildDeck(initialPairs), TIME_LIMIT_SECONDS)
+    (initialPairs) => createInitialState(buildOrderedDeck(initialPairs), TIME_LIMIT_SECONDS)
   );
   const mismatchTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [modalDismissed, setModalDismissed] = useState(false);
+
+  useEffect(() => {
+    dispatch({ type: 'RESET', cards: buildDeck(pairs), timeLimit: TIME_LIMIT_SECONDS });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (state.status !== 'playing') return;
