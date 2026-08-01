@@ -28,14 +28,15 @@ describe('MemoryCard', () => {
   });
 
   it('reveals image content when flipped', () => {
-    render(
+    const { container } = render(
       <MemoryCard
         card={makeCard({ type: 'image', content: 'img.png', isFlipped: true })}
         onClick={vi.fn()}
         disabled={false}
       />
     );
-    expect(screen.getByRole('img')).toHaveAttribute('src', expect.stringContaining('img.png'));
+    const img = container.querySelector('img');
+    expect(img).toHaveAttribute('src', expect.stringContaining('img.png'));
   });
 
   it('calls onClick with the card id when clicked', async () => {

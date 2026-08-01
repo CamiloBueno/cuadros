@@ -22,7 +22,7 @@ export function MemoryCard({ card, onClick, disabled }: MemoryCardProps) {
     >
       {isRevealed ? (
         card.type === 'image' ? (
-          <Image src={card.content} alt="card image" width={120} height={120} className="object-cover rounded-lg" unoptimized />
+          <Image src={card.content} alt="" width={120} height={120} className="object-cover rounded-lg" unoptimized />
         ) : (
           <span className="text-center font-semibold text-gray-900">{card.content}</span>
         )
