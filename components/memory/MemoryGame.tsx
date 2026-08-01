@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useReducer, useRef } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 import { MemoryCard } from './MemoryCard';
 import { Timer } from './Timer';
 import { ResultModal } from './ResultModal';
@@ -21,6 +21,7 @@ export function MemoryGame({ pairs }: MemoryGameProps) {
     (initialPairs) => createInitialState(buildDeck(initialPairs), TIME_LIMIT_SECONDS)
   );
   const mismatchTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [modalDismissed, setModalDismissed] = useState(false);
 
   useEffect(() => {
     if (state.status !== 'playing') return;
@@ -52,6 +53,7 @@ export function MemoryGame({ pairs }: MemoryGameProps) {
 
   function handleRetry() {
     dispatch({ type: 'RESET', cards: buildDeck(pairs), timeLimit: TIME_LIMIT_SECONDS });
+    setModalDismissed(false);
   }
 
   const isResolvingPair = state.flippedIds.length === 2;
@@ -67,7 +69,12 @@ export function MemoryGame({ pairs }: MemoryGameProps) {
         ))}
       </div>
       {(state.status === 'won' || state.status === 'lost') && (
-        <ResultModal status={state.status} open onRetry={handleRetry} onClose={() => {}} />
+        <ResultModal
+          status={state.status}
+          open={(state.status === 'won' || state.status === 'lost') && !modalDismissed}
+          onRetry={handleRetry}
+          onClose={() => setModalDismissed(true)}
+        />
       )}
     </div>
   );

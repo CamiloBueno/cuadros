@@ -94,4 +94,19 @@ describe('MemoryGame', () => {
     expect(screen.queryByText('Se acabó el tiempo')).not.toBeInTheDocument();
     expect(screen.getByText('3:00')).toBeInTheDocument();
   });
+
+  it('hides the modal when Cerrar is clicked, without resetting the game', async () => {
+    render(<MemoryGame pairs={pairs} />);
+
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(180_000);
+    });
+    expect(screen.getByText('Se acabó el tiempo')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Cerrar' }));
+
+    expect(screen.queryByText('Se acabó el tiempo')).not.toBeInTheDocument();
+    // Board is still in the lost state, not reset — timer should NOT be back at 3:00
+    expect(screen.queryByText('3:00')).not.toBeInTheDocument();
+  });
 });
