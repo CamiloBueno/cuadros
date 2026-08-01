@@ -14,6 +14,7 @@ export function MemoryCard({ card, onClick, disabled }: MemoryCardProps) {
     <button
       type="button"
       aria-label={isRevealed ? `Carta revelada: ${card.type === 'text' ? card.content : 'imagen'}` : 'Carta oculta'}
+      data-card-id={card.id}
       disabled={disabled || card.isMatched}
       onClick={() => onClick(card.id)}
       className={`aspect-square rounded-xl border-2 flex items-center justify-center p-2 transition-colors ${
