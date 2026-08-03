@@ -2,6 +2,7 @@ import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { MemoryGame } from '@/components/memory/MemoryGame';
 import { mapRowsToPairs, hasExpectedPairCount } from '@/lib/game/pairs';
 import type { MemoryPairRow } from '@/lib/supabase/types';
+import { MissionShell } from '@/components/misiones/MissionShell';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,16 +20,21 @@ export default async function MemoramaPage() {
 
   if (error || !hasExpectedPairCount(rows)) {
     return (
-      <main className="p-8">
+      <div className="p-8">
         <p className="text-red-600">No se pudo cargar el memorama. Intenta de nuevo más tarde.</p>
-      </main>
+      </div>
     );
   }
 
   return (
-    <main className="p-8">
-      <h1 className="text-2xl font-bold mb-6">Parejas ocultas</h1>
+    <MissionShell
+      missionNumber={3}
+      missionName="Parejas ocultas"
+      title="Memorama"
+      description="Encuentra las parejas antes de que se acabe el tiempo."
+      backHref="/"
+    >
       <MemoryGame pairs={mapRowsToPairs(rows)} />
-    </main>
+    </MissionShell>
   );
 }

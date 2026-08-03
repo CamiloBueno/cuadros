@@ -16,3 +16,10 @@ export interface CrosswordClueRow {
   start_row: number;
   start_col: number;
 }
+
+export interface HangmanWordRow {
+  id: string;
+  mission_id: string;
+  word: string;
+  order_index: number;
+}
