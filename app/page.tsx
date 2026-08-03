@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 const MISSIONS = [
   { href: '/misiones/memorama', title: 'Parejas ocultas', description: 'Memorama' },
   { href: '/misiones/crucigrama', title: 'Completa el crucigrama', description: 'Crucigrama' },
+  { href: '/misiones/ahorcado', title: 'Juego del ahorcado', description: 'Ahorcado' },
 ];
 
 export default function Home() {

@@ -2,6 +2,7 @@ import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { CrosswordGame } from '@/components/crossword/CrosswordGame';
 import { mapRowsToClues, hasExpectedClueCount } from '@/lib/crossword/clues';
 import type { CrosswordClueRow } from '@/lib/supabase/types';
+import { MissionShell } from '@/components/misiones/MissionShell';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,16 +20,21 @@ export default async function CrucigramaPage() {
 
   if (error || !hasExpectedClueCount(rows)) {
     return (
-      <main className="p-8">
+      <div className="p-8">
         <p className="text-red-600">No se pudo cargar el crucigrama. Intenta de nuevo más tarde.</p>
-      </main>
+      </div>
     );
   }
 
   return (
-    <main className="p-8">
-      <h1 className="text-2xl font-bold mb-6">Completa el crucigrama</h1>
+    <MissionShell
+      missionNumber={4}
+      missionName="Crucigrama"
+      title="Completa el crucigrama"
+      description="Resuelve las pistas sobre la historia del colegio."
+      backHref="/"
+    >
       <CrosswordGame clues={mapRowsToClues(rows)} />
-    </main>
+    </MissionShell>
   );
 }
