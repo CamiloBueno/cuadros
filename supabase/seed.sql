@@ -19,3 +19,17 @@ insert into crossword_clues (mission_id, clue_number, direction, clue_text, answ
   ('mission-4', 5, 'across', 'Asociación que reúne hoy a los egresados del Colegio Alemán de Cali. (Invertido)', 'ACEDOSA', 8, 1),
   ('mission-4', 6, 'across', 'Festival folclórico y de la cerveza más grande del mundo.', 'OKTOBERFEST', 0, 3),
   ('mission-4', 7, 'down', 'Instrumento musical que nunca faltaba en el salón de música.', 'PIANO', 1, 1);
+
+insert into hangman_words (mission_id, word, order_index) values
+  ('mission-6', 'FREUNDSCHAFT', 1),
+  ('mission-6', 'ERINNERUNG', 2),
+  ('mission-6', 'GENERATION', 3),
+  ('mission-6', 'SCHULE', 4),
+  ('mission-6', 'LEHRER', 5),
+  ('mission-6', 'HEIMAT', 6),
+  ('mission-6', 'ZUSAMMENHALT', 7),
+  ('mission-6', 'WIEDERSEHEN', 8),
+  ('mission-6', 'MAUER', 9),
+  ('mission-6', 'EINHEIT', 10),
+  ('mission-6', 'ZUKUNFT', 11),
+  ('mission-6', 'VERGANGENHEIT', 12);
