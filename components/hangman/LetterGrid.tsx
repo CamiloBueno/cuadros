@@ -11,7 +11,7 @@ interface LetterGridProps {
 
 export function LetterGrid({ guessedLetters, wrongLetters, disabled, onGuess }: LetterGridProps) {
   return (
-    <div className="grid grid-cols-12 gap-2 sm:grid-cols-6">
+    <div className="mx-auto grid max-w-xl grid-cols-7 gap-2 sm:grid-cols-9 lg:grid-cols-[repeat(13,minmax(0,1fr))]">
       {ALPHABET.map((letter) => {
         const isCorrect = guessedLetters.includes(letter);
         const isWrong = wrongLetters.includes(letter);

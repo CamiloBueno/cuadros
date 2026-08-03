@@ -34,6 +34,7 @@ export function HangmanGame({ words }: HangmanGameProps) {
   }
 
   const isGameOver = state.status === 'won' || state.status === 'lost';
+  const displayLetters = state.status === 'lost' ? state.word.split('') : state.guessedLetters;
 
   return (
     <MissionShell
@@ -51,7 +52,7 @@ export function HangmanGame({ words }: HangmanGameProps) {
     >
       <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col gap-8">
-          <WordDisplay word={state.word} guessedLetters={state.guessedLetters} />
+          <WordDisplay word={state.word} guessedLetters={displayLetters} />
           <div>
             <p className="mb-3 text-sm text-muted-foreground">Selecciona la letra:</p>
             <LetterGrid

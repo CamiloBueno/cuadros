@@ -19,9 +19,9 @@ export default async function AhorcadoPage() {
 
   if (error || !hasWords(rows)) {
     return (
-      <main className="p-8">
+      <div className="p-8">
         <p className="text-red-600">No se pudo cargar el ahorcado. Intenta de nuevo más tarde.</p>
-      </main>
+      </div>
     );
   }
 

@@ -30,15 +30,28 @@ export function Rabbit({ wrongLetters }: RabbitProps) {
 
   return (
     <div className="relative h-96 w-72">
+      <div data-testid="gallows" aria-hidden="true" className="absolute inset-0 z-0">
+        {/* base */}
+        <div className="absolute bottom-0 left-[78%] h-3 w-28 -translate-x-1/2 rounded-sm bg-amber-950" />
+        {/* vertical post */}
+        <div className="absolute top-0 left-[78%] h-full w-5 -translate-x-1/2 rounded-sm bg-amber-800" />
+        {/* horizontal beam */}
+        <div className="absolute top-8 left-1/2 h-5 w-[35%] rounded-sm bg-amber-800" />
+        {/* rope */}
+        <div className="absolute top-8 left-1/2 h-14 w-1 -translate-x-1/2 bg-stone-300" />
+        {/* noose loop */}
+        <div className="absolute top-[4.75rem] left-1/2 h-6 w-6 -translate-x-1/2 rounded-full border-2 border-stone-300" />
+      </div>
       {visibleParts.map((part) => (
         <Image
           key={part}
           data-testid="rabbit-part"
+          data-part={part}
           src={PART_ASSET[part]}
-          alt={part}
+          alt=""
           width={200}
           height={280}
-          className={`absolute ${PART_STYLE[part]}`}
+          className={`absolute z-10 h-auto ${PART_STYLE[part]}`}
         />
       ))}
     </div>
