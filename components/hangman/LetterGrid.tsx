@@ -1,3 +1,5 @@
+'use client';
+
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
 interface LetterGridProps {
