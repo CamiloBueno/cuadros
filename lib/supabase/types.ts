@@ -23,3 +23,10 @@ export interface HangmanWordRow {
   word: string;
   order_index: number;
 }
+
+export interface JigsawPieceRow {
+  id: string;
+  mission_id: string;
+  image_url: string | null;
+  order_index: number;
+}
