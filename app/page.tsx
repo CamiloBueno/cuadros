@@ -5,6 +5,7 @@ const MISSIONS = [
   { href: '/misiones/memorama', title: 'Parejas ocultas', description: 'Memorama' },
   { href: '/misiones/crucigrama', title: 'Completa el crucigrama', description: 'Crucigrama' },
   { href: '/misiones/ahorcado', title: 'Juego del ahorcado', description: 'Ahorcado' },
+  { href: '/misiones/rompecabezas', title: 'Completa el rompecabezas', description: 'Puzzle' },
 ];
 
 export default function Home() {
